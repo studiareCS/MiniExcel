@@ -10,9 +10,7 @@ class Hoja{
         size_t columnas = 10;
 
     public:
-        
         // Getters y Setters
-        
         Hoja_NameType getNombre() const {
             return nombre;
         }
@@ -38,5 +36,7 @@ class Hoja{
             }
         }
 };
+
+void DemoHoja();
 
 #endif // __HOJAS_H__
