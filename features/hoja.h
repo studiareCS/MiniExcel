@@ -10,6 +10,10 @@ class Hoja{
         size_t columnas = 10;
 
     public:
+
+        // Destructor
+        virtual ~Hoja();
+
         // Getters y Setters
         Hoja_NameType getNombre() const {
             return nombre;
