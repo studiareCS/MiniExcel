@@ -2,8 +2,8 @@
 
 # Definición de variables
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -g -pthread
-LDFLAGS = -pthread
+CXXFLAGS = -std=c++17 -Wall -g
+LDFLAGS = -lncurses
 
 # Nombre del ejecutable
 TARGET = main
