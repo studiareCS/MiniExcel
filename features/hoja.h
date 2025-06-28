@@ -1,5 +1,5 @@
-#ifndef __HOJAS_H__
-#define __HOJAS_H__
+#ifndef __HOJA_H__
+#define __HOJA_H__
 
 #include "types.h"
 
@@ -39,4 +39,4 @@ class Hoja{
 
 void DemoHoja();
 
-#endif // __HOJAS_H__
+#endif // __HOJA_H__
