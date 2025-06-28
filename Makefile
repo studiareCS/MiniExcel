@@ -9,7 +9,8 @@ LDFLAGS = -lncurses
 TARGET = main
 
 # Archivos fuente
-SRCS = main.cpp
+SRCS =  main.cpp interfaz.cpp \
+		features/hoja.cpp 
 
 # Lista de objetos generados a partir de los archivos fuente
 OBJS = $(SRCS:.cpp=.o)
