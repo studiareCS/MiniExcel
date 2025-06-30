@@ -9,8 +9,9 @@ LDFLAGS = -lncurses
 TARGET = main
 
 # Archivos fuente
+
 SRCS =  main.cpp interfaz.cpp \
-		features/hoja.cpp 
+		features/hoja.cpp interfaz.cpp
 
 # Lista de objetos generados a partir de los archivos fuente
 OBJS = $(SRCS:.cpp=.o)
@@ -20,7 +21,7 @@ all: $(TARGET)
 
 # Regla para enlazar los objetos y crear el ejecutable
 $(TARGET): $(OBJS)
-	$(CXX) $(LDFLAGS) $^ -o $@
+	$(CXX) $(LDFLAGS) $^ -o $(TARGET) $(LDFLAGS)
 
 # Regla para compilar los archivos fuente a objetos
 %.o: %.cpp
