@@ -1,4 +1,4 @@
 # Ignorar binarios
-.o
-.exe
+*.o
+*.exe
 main

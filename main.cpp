@@ -1,5 +1,6 @@
 #include <iostream>
 #include "interfaz.h"
+#include "features/hoja.h"
 using namespace std;
 
 int main(){
@@ -16,4 +17,6 @@ do {
 } while (Tabla != 'q');
 
     FinalizarNcurses();
+    // DemoHoja();
+    return 0;
 }
