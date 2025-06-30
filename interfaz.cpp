@@ -36,27 +36,27 @@ void Interfaz::Mover(int tecla) {
 
 void Interfaz::MostrarTabla() {
     clear();
-
+    Menu();    
     // Encabezados de columna
     for (int c = 0; c < columnas; ++c) {
-        mvprintw(1, 8 + c * 12, "Col %d", c);
+        mvprintw(8, 17 + c * 12, "Col %d", c);
     }
 
     // Filas
-    for (int r = 0; r < filas; ++r) {
-        mvprintw(3 + r * 2, 0, "Fila %d", r);
+    for (int f = 0; f < filas; ++f) {
+        mvprintw(10 + f * 2, 0, "Fila %d", f);
 
         for (int c = 0; c < columnas; ++c) {
-            int y = 3 + r * 2;
-            int x = 8 + c * 12;
+            int y = 10 + f * 2;  
+            int x = 15 + c * 12;
 
             // Si es la celda activa, resaltamos
-            if (r == cursorRow && c == cursorCol) {
+            if (f == cursorRow && c == cursorCol) {
                 attron(A_REVERSE); // Invierte colores
-                mvprintw(y, x, "     ");
+                mvprintw(y, x, "|%-5s|", datos[f][c].c_str());
                 attroff(A_REVERSE);
             } else {
-                mvprintw(y, x, "     ");
+                mvprintw(y, x, "|%-5s|", datos[f][c].c_str());
             }
         }
     }
@@ -64,16 +64,50 @@ void Interfaz::MostrarTabla() {
     refresh();
 }
 
-//Constructor    
-Interfaz::Interfaz(int fil, int col) : cursorRow(0), cursorCol(0), filas(fil), columnas(col) {}
+//Constructor    cd M
+Interfaz::Interfaz(int fil, int col) {
+    cursorRow=0;
+    cursorCol=0;
+    filas=fil;
+    columnas=col;
 
+    // Inicializamos la matriz de datos
+    // Usamos un puntero a puntero para crear una matriz dinámica de strings
+    datos= new string*[filas];
+    for(int i=0; i<filas; i++){
+        datos[i]= new string[columnas];
+    }
+} 
+
+Interfaz::~Interfaz(){}
+
+
+void Interfaz::EditarCelda(){
+    char buffer[10];
+
+    echo();          // Hacer que se muestre lo que escribes
+    curs_set(1);     // Mostrar cursor
+
+    // Pedir entrada en la parte inferior
+    move(filas * 4, 0);
+    getnstr(buffer, 9); //lee hasta 50 caracteres
+
+    // Guardar el texto en la celda activa
+    datos[cursorRow][cursorCol] = buffer;
+
+
+    clrtoeol();
+
+    noecho();        // Ocultar input
+    curs_set(0);     // Ocultar cursor
+}
 
 void Interfaz::up() {
     cursorRow = (cursorRow - 1 + filas) % filas;
 }
 
 void Interfaz::down() {
-    cursorRow = (cursorRow + 1) % filas;
+    cursorRow = (cursorRow + 1) % filas; 
 }
 
 void Interfaz::left() {
@@ -82,6 +116,15 @@ void Interfaz::left() {
 
 void Interfaz::right() {
     cursorCol = (cursorCol + 1) % columnas;
+}
+
+void Menu(){
+    mvprintw(0, 0, "---------------");
+    mvprintw(1, 0, "MiniExcel");
+    mvprintw(2, 0, "---------------");
+    mvprintw(3, 0, "1. Editar celda (Enter)");
+    mvprintw(4, 0, "2. Mover cursor (Flechas)");
+    mvprintw(5, 0, "3. Salir (q)");
 }
 
 

@@ -2,27 +2,36 @@
 #define __INTERFAZ_H__
 #include <string>
 #include <ncurses.h>
+using namespace std;
 
 class Interfaz {
     public:
 
-    int cursorRow=0;
-    int cursorCol=0;
+    int cursorRow;
+    int cursorCol;
     int filas;
     int columnas;
+    string ** datos;
+
+    
 
     Interfaz(int filas, int columnas);
+    ~Interfaz();
     void Mover(int tecla);
     void MostrarTabla();
+
+    void EditarCelda();
+
+
     void up();
     void right();
-    void left();
+    void left(); 
     void down();
 
+    
 };
+    void Menu();
+    void InicializarNcurses();
+    void FinalizarNcurses();
 
-
-void InicializarNcurses();
-void FinalizarNcurses();
-void Menu();
 #endif // __INTERFAZ_H__
