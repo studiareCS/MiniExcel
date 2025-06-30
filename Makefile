@@ -11,7 +11,7 @@ TARGET = main
 # Archivos fuente
 
 SRCS =  main.cpp interfaz.cpp \
-		features/hoja.cpp interfaz.cpp
+		features/hoja.cpp features/core.cpp
 
 # Lista de objetos generados a partir de los archivos fuente
 OBJS = $(SRCS:.cpp=.o)

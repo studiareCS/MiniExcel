@@ -2,17 +2,29 @@
 #define __HOJA_H__
 
 #include "types.h"
+#include "../values.h"
+#include <vector>
+using namespace std;
 
 class Hoja{
     private:
         Hoja_NameType nombre = 0;
-        size_t filas = 10;
-        size_t columnas = 10;
+        size_t filas = FILAS_INICIALES;
+        size_t columnas = COLUMNAS_INICIALES;
 
     public:
 
+        // Establecer el tamaño inicial de la tabla
+        vector <vector<int>> tabla;
+
         // Destructor
         virtual ~Hoja();
+
+        // Aumentar filas
+        void aumentarFila();
+
+        // Aumentar columnas
+        void aumentarColumna();
 
         // Getters y Setters
         Hoja_NameType getNombre() const {

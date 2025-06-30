@@ -2,13 +2,15 @@
 #include "interfaz.h"
 #include "features/hoja.h"
 #include "values.h"
+#include "features/core.h"
 using namespace std;
 
 int main(){
+    /*
     InicializarNcurses();
     
 
-    Interfaz tabla(FILAS_INICIALES, COLUMNAS_INICIALES); // Tabla de 5x5
+    Interfaz tabla(FILAS_INICIALES, COLUMNAS_INICIALES);
 
     int tecla;
     do { 
@@ -27,5 +29,7 @@ int main(){
     tabla.~Interfaz();
     delete [] tabla.datos;
     FinalizarNcurses();
-return 0;
+    */
+    Demo();
+    return 0;
 }
