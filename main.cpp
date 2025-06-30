@@ -5,18 +5,26 @@ using namespace std;
 
 int main(){
     InicializarNcurses();
-    Interfaz mc(10,10);
+    
 
-int Tabla;
-do {
+    Interfaz tabla(5, 5); // Tabla de 5x5
 
-    mc.MostrarTabla();
-    Tabla = getch();
-    mc.Mover(Tabla);
+    int tecla;
+    do { 
+        tabla.MostrarTabla();
 
-} while (Tabla != 'q');
+        tecla = getch();
 
+        if (tecla == 10) { // Enter
+            tabla.EditarCelda();
+        } else {
+            tabla.Mover(tecla);
+        }
+
+    } while (tecla != 'q');
+
+    tabla.~Interfaz();
+    delete [] tabla.datos;
     FinalizarNcurses();
-    // DemoHoja();
-    return 0;
+return 0;
 }
