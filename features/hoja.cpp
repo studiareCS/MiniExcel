@@ -11,3 +11,7 @@ void DemoHoja(){
     std::cout << "Columnas: " << hoja.getColumnas() << std::endl;
     
 }
+
+Hoja::~Hoja() {
+    // Destructor vacío, ya que no hay recursos que liberar
+}
