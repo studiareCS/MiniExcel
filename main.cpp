@@ -1,13 +1,14 @@
 #include <iostream>
 #include "interfaz.h"
 #include "features/hoja.h"
+#include "values.h"
 using namespace std;
 
 int main(){
     InicializarNcurses();
     
 
-    Interfaz tabla(5, 5); // Tabla de 5x5
+    Interfaz tabla(FILAS_INICIALES, COLUMNAS_INICIALES); // Tabla de 5x5
 
     int tecla;
     do { 
