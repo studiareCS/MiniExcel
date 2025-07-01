@@ -1,6 +1,7 @@
 #ifndef __INTERFAZ_H__
 #define __INTERFAZ_H__
 #include <string>
+#include <vector>
 #include <ncurses.h>
 using namespace std;
 
@@ -11,15 +12,13 @@ class Interfaz {
     int cursorCol;
     int filas;
     int columnas;
-    string ** datos;
-
-    
+    vector<vector<string>> datos;
 
     Interfaz(int filas, int columnas);
     ~Interfaz();
     void Mover(int tecla);
+    
     void MostrarTabla();
-
     void EditarCelda();
 
 

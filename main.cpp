@@ -6,16 +6,14 @@ using namespace std;
 int main(){
     InicializarNcurses();
     
-
-    Interfaz tabla(5, 5); // Tabla de 5x5
+    Interfaz tabla(10, 10); // Tabla de n*n
 
     int tecla;
     do { 
         tabla.MostrarTabla();
+        tecla = getch(); 
 
-        tecla = getch();
-
-        if (tecla == 10) { // Enter
+        if (tecla == 10) {  // codigo Ascii de enter 
             tabla.EditarCelda();
         } else {
             tabla.Mover(tecla);
@@ -24,7 +22,7 @@ int main(){
     } while (tecla != 'q');
 
     tabla.~Interfaz();
-    delete [] tabla.datos;
     FinalizarNcurses();
+    
 return 0;
 }

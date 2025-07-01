@@ -3,7 +3,6 @@ using namespace std;
 
 void InicializarNcurses() {
     initscr(); //cambia la terminal a tamaño completo
-    noecho();  //hace que no se muestren los caracteres introducidos por el usuario
     cbreak();  //hace que la entrada de teclado se procese inmediatamente
     keypad(stdscr, TRUE); //permite que getch() detecte teclas especiales
     curs_set(0); //para la interfaz más limpia
@@ -35,8 +34,11 @@ void Interfaz::Mover(int tecla) {
 
 
 void Interfaz::MostrarTabla() {
-    clear();
-    Menu();    
+
+    clear(); // limpia pantalla
+    
+    Menu();  // Muestra el menú
+    
     // Encabezados de columna
     for (int c = 0; c < columnas; ++c) {
         mvprintw(8, 17 + c * 12, "Col %d", c);
@@ -64,7 +66,7 @@ void Interfaz::MostrarTabla() {
     refresh();
 }
 
-//Constructor    cd M
+//Constructor
 Interfaz::Interfaz(int fil, int col) {
     cursorRow=0;
     cursorCol=0;
@@ -72,31 +74,30 @@ Interfaz::Interfaz(int fil, int col) {
     columnas=col;
 
     // Inicializamos la matriz de datos
-    // Usamos un puntero a puntero para crear una matriz dinámica de strings
-    datos= new string*[filas];
-    for(int i=0; i<filas; i++){
-        datos[i]= new string[columnas];
+
+    datos.resize(filas);     // Generamos espacio para las filas
+
+    for(int i=0; i<fil; i++){
+        datos[i].resize(columnas, " ");  // Generamos las columnas con espacios vacios
     }
-} 
+}                                                       
 
 Interfaz::~Interfaz(){}
 
 
 void Interfaz::EditarCelda(){
-    char buffer[10];
+    char buffer[10]; // Almacena el texto de entrada del usuario
 
     echo();          // Hacer que se muestre lo que escribes
+    
     curs_set(1);     // Mostrar cursor
-
-    // Pedir entrada en la parte inferior
-    move(filas * 4, 0);
-    getnstr(buffer, 9); //lee hasta 50 caracteres
+    
+    move((filas+6) * 2, 0); // Pedir entrada en la parte inferior
+    
+    getnstr(buffer, 9); //lee hasta 9 caracteres
 
     // Guardar el texto en la celda activa
     datos[cursorRow][cursorCol] = buffer;
-
-
-    clrtoeol();
 
     noecho();        // Ocultar input
     curs_set(0);     // Ocultar cursor
@@ -119,9 +120,9 @@ void Interfaz::right() {
 }
 
 void Menu(){
-    mvprintw(0, 0, "---------------");
-    mvprintw(1, 0, "MiniExcel");
-    mvprintw(2, 0, "---------------");
+    mvprintw(0, 0, "-------------------");
+    mvprintw(1, 0, "  MiniExcel");
+    mvprintw(2, 0, "-------------------");
     mvprintw(3, 0, "1. Editar celda (Enter)");
     mvprintw(4, 0, "2. Mover cursor (Flechas)");
     mvprintw(5, 0, "3. Salir (q)");
